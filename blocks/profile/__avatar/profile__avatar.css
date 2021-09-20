@@ -1,0 +1,14 @@
+.profile__avatar {
+    align-self: center;
+    margin: 0;
+    border-radius: 50%;
+    max-width: 24vh;
+    max-height: 18vh;
+}
+
+@media screen and (min-width:1280px) {
+    .profile__avatar {
+        height: 128px;
+        justify-self: self-start;
+    }
+}
