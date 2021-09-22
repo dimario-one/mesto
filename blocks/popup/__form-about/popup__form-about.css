@@ -1,8 +1,5 @@
 .popup__form-about {
-    position: absolute;
-    left: 22px;
-    right: 22px;
-    top: 179px;
+    margin: 0 22px 45px;
     width: 238px;
     padding: 0;
     border-top: none;
@@ -15,7 +12,7 @@
     .popup__form-about {
         right: 36px;
         left: 36px;
+        margin: 0 36px 48px;
         width: 358px;
-        margin-bottom: 13px;
     }
 }

@@ -1,10 +1,10 @@
 .popup__form {
     position: relative;
-    top: 123px;
+    padding: 0;
     justify-content: center;
     width: 282px;
     height: 322px;
-    margin: 0 auto;
+    margin: 123px auto 0;
     background: #FFFFFF;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
