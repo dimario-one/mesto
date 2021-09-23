@@ -1,16 +1,9 @@
 .popup__form-name {
-    width: 238px;
     margin: 0 22px 43px;
-    padding: 0;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (min-width: 760px) {
     .popup__form-name {
         margin: 0 36px 30px;
-        width: 358px;
     }
 }
