@@ -15,76 +15,78 @@
     </header>
     <main>
         <section class="profile">
-            <img class="profile__avatar" src="./images/image(4).png" alt="Жак Ив Кусто">
+            <img class="profile__avatar" src="./images/image(4).png" alt="Аватар">
 
             <div class="profile__container-big">
                 <div class="profile__container">
                     <h1 class="profile__text-title">Жак-Ив Кусто</h1>
-                    <button class="profile__editButton"><img src="./images/editbutton.svg" alt="Картинка"></button>
+                    <button class="profile__edit-button" type="button"><img src="./images/editbutton.svg" alt="Картинка"></button>
                 </div>
                 <p class="profile__text-subtitle">Исследователь океана</p>
             </div>
-            <button class="profile__AddButton" type="button"><img src="./images/plus.svg " alt="Плюс"></button>
+            <button class="profile__add-button" type="button"><img class="profile__add-button-img" src="./images/plus.svg " alt="Плюс"></button>
         </section>
         <section class="cards">
             <ul class="cards__items">
                 <li class="cards__item">
                     <img class="cards__pic" src="./images/kirill-pershin-karachaevsk-1.png" alt="Здесь должна быть картинка">
                     <div class="cards__container">
-                        <p class="cards__text">Карачаевск</p>
-                        <button class="cards__like" aria-label="like"></button>
+                        <h2 class="cards__text">Карачаевск</h2>
+                        <button class="cards__like" aria-label="like" type="button"></button>
                     </div>
                 </li>
                 <li class="cards__item">
                     <img class="cards__pic" src="./images/kirill-pershin-elbrus-1.png" alt="Здесь должна быть картинка">
                     <div class="cards__container">
-                        <p class="cards__text">Гора Эльбрус</p>
-                        <button class="cards__like" aria-label="like"></button>
+                        <h2 class="cards__text">Гора Эльбрус</h2>
+                        <button class="cards__like" aria-label="like" type="button"></button>
                     </div>
                 </li>
                 <li class="cards__item">
                     <img class="cards__pic" src="./images/kirill-pershin-dombay-1.png" alt="Здесь должна быть картинка">
                     <div class="cards__container">
-                        <p class="cards__text">Домбай</p>
-                        <button class="cards__like" aria-label="like"></button>
+                        <h2 class="cards__text">Домбай</h2>
+                        <button class="cards__like" aria-label="like" type="button"></button>
                     </div>
                 </li>
                 <li class="cards__item">
                     <img class="cards__pic" src="./images/kirill-pershin-elbrus-1.png" alt="Здесь должна быть картинка">
                     <div class="cards__container">
-                        <p class="cards__text">Гора Эльбрус</p>
-                        <button class="cards__like" aria-label="like"></button>
+                        <h2 class="cards__text">Гора Эльбрус</h2>
+                        <button class="cards__like" aria-label="like" type="button"></button>
                     </div>
                 </li>
                 <li class="cards__item">
                     <img class="cards__pic" src="./images/kirill-pershin-dombay-1.png" alt="Здесь должна быть картинка">
                     <div class="cards__container">
-                        <p class="cards__text">Домбай</p>
-                        <button class="cards__like" aria-label="like"></button>
+                        <h2 class="cards__text">Домбай</h2>
+                        <button class="cards__like" aria-label="like" type="button"></button>
                     </div>
                 </li>
                 <li class="cards__item">
                     <img class="cards__pic" src="./images/kirill-pershin-karachaevsk-1.png" alt="Здесь должна быть картинка">
                     <div class="cards__container">
-                        <p class="cards__text">Карачаевск</p>
-                        <button class="cards__like" aria-label="like"></button>
+                        <h2 class="cards__text">Карачаевск</h2>
+                        <button class="cards__like" aria-label="like" type="button"></button>
                     </div>
                 </li>
             </ul>
         </section>
     </main>
     <footer class="footer">
-        <h1 class="footer__text">&copy; 2020 Mesto Russia</h1>
+        <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
-    <section class="popup">
-        <form class="popup__form">
-            <img class="popup__close-button" src="./images/CloseIcon.svg" alt="Здесь должна быть картинка" aria-label="">
-            <p class="popup__title">Редактировать профиль</p>
-            <input class="popup__form-name popup__input-text" type="text">
-            <input class="popup__form-about popup__input-text" type="text">
-            <button type="submit" class="popup__saveButton">Сохранить</button>
-        </form>
-    </section>
+    <div class="popup">
+        <div class="popup__container">
+            <form class="popup__form" name="popup__form">
+                <button class="popup__close-button" type="button"></button>
+                <h1 class="popup__title">Редактировать профиль</h1>
+                <input class="popup__input-name  popup__input" type="text" name="name">
+                <input class="popup__input-prof  popup__input" type="text" name="prof">
+                <button type="submit" class="popup__save-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
     <script src="./scripts/script.js"></script>
 </body>
 

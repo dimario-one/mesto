@@ -1,8 +1,9 @@
 .cards__like {
     width: 22px;
     height: 19px;
+    cursor: pointer;
     border: none;
-    background-image: url(../../../images/like.png);
+    background-image: url(../../../images/like.svg);
     background-size: cover;
 }
 
@@ -11,6 +12,6 @@
 }
 
 .cards__like:active {
-    background-image: url(../../../images/like_active.png);
+    background-image: url(../../../images/like_active.svg);
     opacity: 1;
 }

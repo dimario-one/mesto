@@ -19,6 +19,5 @@
 @media screen and (min-width: 1280px) {
     .cards__items {
         grid-template-columns: repeat(3, 282px);
-        gap: 17px;
     }
 }
