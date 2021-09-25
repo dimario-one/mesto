@@ -4,10 +4,10 @@ const popupCloseBtn = popup.querySelector(".popup__close-button"); /*Нашел 
 const popupForm = popup.querySelector(".popup__form"); /*Нашел форму с кнопками*/
 
 
-let formName = document.querySelector(".popup__input-name"); /*Нашел инпут имени*/
+let formName = document.querySelector(".popup__input_type_name"); /*Нашел инпут имени*/
 let textTitle = document.querySelector('.profile__text-title'); /*Нашел куда буду сохранять новое имя*/
 
-let formProf = document.querySelector(".popup__input-prof"); /*Нашел инпут професии*/
+let formProf = document.querySelector(".popup__input_type_prof"); /*Нашел инпут професии*/
 let textSubtitle = document.querySelector('.profile__text-subtitle'); /*Нашел куда буду сохранять новую професию*/
 
 function popupOpen() {
