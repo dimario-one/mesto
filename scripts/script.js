@@ -56,7 +56,7 @@ function popupImageOpen(e) {
     const card = e.currentTarget.closest(".cards__item"); // Нашел где все лежит
     const image = card.querySelector('.cards__type_temlate_pic'); //
     const imageSrc = image.src; //
-    const popupPic = popupImage.querySelector(".popup__type_image_pic"); //
+    const popupPic = popupImage.querySelector(".popup__image_pic"); //
     popupPic.src = imageSrc; //
     //
     const text = card.querySelector('.cards__type_temlate_text'); // Нашел элемент что буду сохранять
