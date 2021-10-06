@@ -3,8 +3,10 @@
     height: 19px;
     cursor: pointer;
     border: none;
-    background-image: url(../../../images/like.svg);
-    background-size: cover;
+    background-image: url(../../../images/like.png);
+    background-size: contain;
+    background-color: white;
+    background-repeat: no-repeat;
 }
 
 .cards__like:hover {
