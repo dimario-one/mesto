@@ -28,57 +28,15 @@
         </section>
         <section class="cards">
             <ul class="cards__items">
-                <li class="cards__item">
-                    <img class="cards__pic" src="./images/kirill-pershin-karachaevsk-1.png" alt="Здесь должна быть картинка">
-                    <div class="cards__container">
-                        <h2 class="cards__text">Карачаевск</h2>
-                        <button class="cards__like" aria-label="like" type="button"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img class="cards__pic" src="./images/kirill-pershin-elbrus-1.png" alt="Здесь должна быть картинка">
-                    <div class="cards__container">
-                        <h2 class="cards__text">Гора Эльбрус</h2>
-                        <button class="cards__like" aria-label="like" type="button"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img class="cards__pic" src="./images/kirill-pershin-dombay-1.png" alt="Здесь должна быть картинка">
-                    <div class="cards__container">
-                        <h2 class="cards__text">Домбай</h2>
-                        <button class="cards__like" aria-label="like" type="button"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img class="cards__pic" src="./images/kirill-pershin-elbrus-1.png" alt="Здесь должна быть картинка">
-                    <div class="cards__container">
-                        <h2 class="cards__text">Гора Эльбрус</h2>
-                        <button class="cards__like" aria-label="like" type="button"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img class="cards__pic" src="./images/kirill-pershin-dombay-1.png" alt="Здесь должна быть картинка">
-                    <div class="cards__container">
-                        <h2 class="cards__text">Домбай</h2>
-                        <button class="cards__like" aria-label="like" type="button"></button>
-                    </div>
-                </li>
-                <li class="cards__item">
-                    <img class="cards__pic" src="./images/kirill-pershin-karachaevsk-1.png" alt="Здесь должна быть картинка">
-                    <div class="cards__container">
-                        <h2 class="cards__text">Карачаевск</h2>
-                        <button class="cards__like" aria-label="like" type="button"></button>
-                    </div>
-                </li>
             </ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup__form_type_edit">
         <div class="popup__container">
-            <form class="popup__form" name="popup__form">
+            <form class="popup__form" name="popup__editform">
                 <button class="popup__close-button" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input class=" popup__input popup__input_type_name" type="text" name="name">
@@ -87,6 +45,39 @@
             </form>
         </div>
     </div>
+
+
+
+    <div class="popup popup popup__form_type_add">
+        <div class="popup__container">
+            <form class="popup__form" name="popup__addform">
+                <button class="popup__close-button popup__close-AddButton" type="button"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <input class=" popup__input popup__input_type_name-pic" type="text" name="name-pic">
+                <input class=" popup__input popup__input_type_link" type="text" name="link">
+                <button type="submit" class="popup__create-button">Создать</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup_type_image">
+        <div class="popup__container">
+            <button class="popup__close-button popup__close-AddButton" type="button"></button>
+            <img class="popup__type_image_pic" src="#">
+            <h2 class="popup__title popup__title_white"></h2>
+        </div>
+    </div>
+
+    <template id="cards__template">
+        <li class="cards__item">
+            <button class="cards__basket"></button>
+            <img class="cards__pic cards__type_temlate_pic" src="#" alt="Здесь должна быть картинка">
+            <div class="cards__container">
+                <h2 class="cards__text cards__type_temlate_text"></h2>
+                <button class="cards__like" aria-label="like" type="button"></button>
+            </div>
+        </li>
+    </template>
     <script src="./scripts/script.js"></script>
 </body>
 

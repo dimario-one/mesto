@@ -1,0 +1,21 @@
+.popup__create-button {
+    padding: 0;
+    align-items: center;
+    width: 238px;
+    height: 46px;
+    background: #000000;
+    border-radius: 2px;
+    margin: 0 22px 25px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    border: none;
+}
+
+.popup__create-button:hover {
+    opacity: 0.8;
+}
