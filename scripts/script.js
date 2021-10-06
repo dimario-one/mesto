@@ -1,5 +1,5 @@
 //Переменные
-const popup = document.querySelector(".popup__form_type_edit"); /*Нашел popup*/
+const popup = document.querySelector(".popup_type_edit"); /*Нашел popup*/
 const popupOpenBtn = document.querySelector(".profile__edit-button"); /*Нашел кнопку редактирования*/
 const popupCloseBtn = popup.querySelector(".popup__close-button"); /*Нашел кнопку закрытия*/
 const popupForm = popup.querySelector(".popup__form"); /*Нашел форму с кнопками*/
@@ -11,7 +11,7 @@ let textTitle = document.querySelector('.profile__text-title'); /*Нашел к�
 let formProf = document.querySelector(".popup__input_type_prof"); /*Нашел инпут професии*/
 let textSubtitle = document.querySelector('.profile__text-subtitle'); /*Нашел куда буду сохранять новую професию*/
 
-const popupAddFormBtn = document.querySelector(".popup__form_type_add"); /*Нашел popup формы добавления*/
+const popupAddFormBtn = document.querySelector(".popup_type_add"); /*Нашел popup формы добавления*/
 const popupAddBtn = document.querySelector(".profile__add-button"); /*Нашел кнопку Добавить*/
 const popupCreateBtn = document.querySelector(".popup__create-button"); //Нашел кнопку Создать
 const popupCloseAddBtn = popupAddFormBtn.querySelector(".popup__close-AddButton"); /*Нашел кнопку закрытия формы добавления*/
