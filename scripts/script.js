@@ -3,14 +3,10 @@ const profilePopup = document.querySelector(".popup_type_edit"); /*Нашел po
 const popupOpenBtn = document.querySelector(".profile__edit-button"); /*Нашел кнопку редактирования*/
 const popupCloseBtn = profilePopup.querySelector(".popup__close-button"); /*Нашел кнопку закрытия*/
 const popupForm = profilePopup.querySelector(".popup__form"); /*Нашел форму с кнопками*/
-
-
 const formName = document.querySelector(".popup__input_type_name"); /*Нашел инпут имени*/
-let textTitle = document.querySelector('.profile__text-title'); /*Нашел куда буду сохранять новое имя*/
-
-let formProf = document.querySelector(".popup__input_type_prof"); /*Нашел инпут професии*/
-let textSubtitle = document.querySelector('.profile__text-subtitle'); /*Нашел куда буду сохранять новую професию*/
-
+const textTitle = document.querySelector('.profile__text-title'); /*Нашел куда буду сохранять новое имя*/
+const formProf = document.querySelector(".popup__input_type_prof"); /*Нашел инпут професии*/
+const textSubtitle = document.querySelector('.profile__text-subtitle'); /*Нашел куда буду сохранять новую професию*/
 const popupAddFormBtn = document.querySelector(".popup_type_add"); /*Нашел popup формы добавления*/
 const popupAddBtn = document.querySelector(".profile__add-button"); /*Нашел кнопку Добавить*/
 const popupCreateBtn = document.querySelector(".popup__create-button"); //Нашел кнопку Создать
@@ -18,14 +14,10 @@ const popupCloseAddBtn = popupAddFormBtn.querySelector(".popup__close-AddButton"
 let formAddName = document.querySelector(".popup__input_type_name-pic"); /*Нашел инпут названия местности*/
 let formAddLink = document.querySelector(".popup__input_type_link"); /*Нашел инпут ссылки местности*/
 let templateText = document.querySelector(".cards__type_temlate_text"); //нашел куда буду записывать имя карточки при еее создании
-let templateLink = document.querySelector(".cards__type_temlate_pic"); //нашел куда буду сохранять ссылку
-
+let templateLink = document.querySelector(".cards__type_temlate_pic"); //нашел куда буду сохранять ссылк
 const popupImage = document.querySelector(".popup_type_image"); //Нашел картинку
 const cardsUl = document.querySelector(".cards__items"); // Нашел список куда буду добавлять карточку
-
 const popupImageCloseBtn = popupImage.querySelector(".popup__close-image"); // Нашел кнопку закрытия попап с картинкой
-
-console.log(popupImageCloseBtn, "popupImageCloseBtn");
 
 //Функции
 
@@ -34,21 +26,19 @@ function openModal(modal) {
     modal.classList.add('popup_open');
 }
 
+//Функции слушатели открытия
 popupOpenBtn.addEventListener('click', () => openModal(profilePopup));
 popupAddBtn.addEventListener('click', () => openModal(popupAddFormBtn));
-popupImage.addEventListener('click', () => openModal(popupImage));
 
 //Функция закрытия
 function closeModal(modal) {
     modal.classList.remove('popup_open');
 }
 
+//Функции слушатели закрытия
 popupCloseBtn.addEventListener('click', () => closeModal(profilePopup));
 popupCloseAddBtn.addEventListener('click', () => closeModal(popupAddFormBtn));
 popupImageCloseBtn.addEventListener('click', () => closeModal(popupImage));
-
-
-
 
 //функция открытия попапа картинки
 function openPopupImage(e) {
@@ -66,11 +56,6 @@ function openPopupImage(e) {
     openModal(popupImage); //функция открытия попапа
 }
 
-/*//функция закрытия попапа картинки
-function popupImageClose() {
-    popupImage.classList.remove("popup_open");
-}*/
-
 //Функция удаления карточки
 function deleteCard(e) {
     const card = e.currentTarget.closest(".cards__item");
@@ -84,9 +69,6 @@ function likeCard(e) {
     like.classList.toggle("cards__like_active");
 }
 
-
-
-
 //Функция добавления новой карточки
 function createCard(name, link) { // Два аргумента в функцию имя и ссылка
     const cardTemplate = document.querySelector("#cards__template"); //Нашел что буду добавлять
@@ -95,6 +77,7 @@ function createCard(name, link) { // Два аргумента в функцию
     const cardsPic = clone.querySelector(".cards__type_temlate_pic"); // нашел  содержимое строки 
     cardsPic.src = link; // вставил путь  link
     cardsPic.alt = name; // вставил содержимое name
+    cardsPic.addEventListener("click", openPopupImage); // добавил слушатель событий открытия на карточку
     //
     const cardsBasket = clone.querySelector(".cards__basket"); //Функция удаления карточки
     cardsBasket.addEventListener('click', deleteCard);
@@ -102,51 +85,22 @@ function createCard(name, link) { // Два аргумента в функцию
     const cardsLike = clone.querySelector(".cards__like"); // Функция лайка
     cardsLike.addEventListener('click', likeCard);
     //
+
+    //
     return clone; //Возвращает значение, чтобы когда был вызов функции отдавала готовое значение
 }
 
 function newCardAdd(e) {
     e.preventDefault(); //
     if (formAddName.value.length > 0 && formAddLink.value.length > 0) {
-        //const cardTemplate = document.querySelector("#cards__template"); //Нашел что буду добавлять
-        //const clone = cardTemplate.content.cloneNode(true); //Клонирую содержимое строки
-        //clone.querySelector(".cards__type_temlate_text").textContent = formAddName.value;
-        //const cardsPic = clone.querySelector(".cards__type_temlate_pic");
-        //cardsPic.src = formAddLink.value;
-        //cardsPic.alt = formAddName.value;
-        //cardsPic.addEventListener("click", openPopupImage);
-        /*
-        //
-        const cardsBasket = clone.querySelector(".cards__basket"); //Функция удаления карточки
-        cardsBasket.addEventListener('click', deleteCard);
-        //
-        const cardsLike = clone.querySelector(".cards__like"); // Функция лайка
-        cardsLike.addEventListener('click', likeCard);
-        //
-        */
-        createCard(formAddName.value, formAddLink.value);
+        const clone = createCard(formAddName.value, formAddLink.value);
         cardsUl.prepend(clone); //вставляю в список
         closeModal(popupAddFormBtn);
     }
 }
 
 const initialCardsContent = ((initialCards) => {
-    //const cardTemplate = document.querySelector("#cards__template");
     initialCards.map((item) => {
-        // const clone = cardTemplate.content.cloneNode(true);
-        // clone.querySelector(".cards__type_temlate_text").textContent = item.name;
-        //const cardsPic = clone.querySelector(".cards__type_temlate_pic");
-        //cardsPic.src = item.link;
-        //cardsPic.addEventListener("click", openPopupImage);
-        /*
-        //
-        const cardsBasket = clone.querySelector(".cards__basket"); //Функция удаления карточки
-        cardsBasket.addEventListener('click', deleteCard);
-        //
-        const cardsLike = clone.querySelector(".cards__like"); //  Функция лайка
-        cardsLike.addEventListener('click', likeCard);
-        //
-        */
         const clone = createCard(item.name, item.link); // на вход функции отправляем два аргумента из item  берем два значения name и link
         cardsUl.prepend(clone); //вставляю в список
     });
@@ -183,27 +137,19 @@ initialCardsContent(initialCards);
 function popupAddBtnOpen() {
     startNameLink();
     openModal(popupImage); //Функция открытия попапа формы добавления
-}
+};
 
 function startNameLink() {
     formAddName.value = "";
-    formAddLink.value = ""; //Функция сохранения начальных значений в инпуты
+    formAddLink.value = ""; //Функция сохранения начальных значений в инпуты 
 }
 
-/*function popupAddBtnClose() {
-    popupAddFormBtn.classList.remove("popup_open"); //Функцияя закрытия попапа формы добавления
-}
-*/
 //Спринт 4
 
 function openProfilePopup() {
     startNameProf()
     openModal(popupModal);
 }
-
-/*function popupClose() {
-    popup.classList.remove("popup_open");
-}*/
 
 function startNameProf() {
     formName.value = textTitle.textContent; //Перезаписал имя
@@ -222,4 +168,4 @@ function save(evt) {
 // Сприн 4
 popupForm.addEventListener('submit', save);
 // Спринт 5
-popupCreateBtn.addEventListener('submit', newCardAdd);
+popupAddFormBtn.addEventListener('submit', newCardAdd);

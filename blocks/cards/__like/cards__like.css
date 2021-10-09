@@ -7,6 +7,7 @@
     background-size: contain;
     background-color: white;
     background-repeat: no-repeat;
+    flex-shrink: 0;
 }
 
 .cards__like:hover {
