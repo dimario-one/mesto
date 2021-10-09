@@ -27,7 +27,7 @@ function openModal(modal) {
 }
 
 //Функции слушатели открытия
-popupOpenBtn.addEventListener('click', () => openModal(profilePopup));
+popupOpenBtn.addEventListener('click', () => popupAddBtnOpen(profilePopup)); //при клике на кнопку вызываю функцию в которой две функции 1. автозаполнения инпутов 2. функция открытия
 popupAddBtn.addEventListener('click', () => openModal(popupAddFormBtn));
 
 //Функция закрытия
@@ -134,9 +134,9 @@ const initialCards = [{
 
 initialCardsContent(initialCards);
 
-function popupAddBtnOpen() {
+function popupAddBtnOpen(modal) {
     startNameLink();
-    openModal(popupImage); //Функция открытия попапа формы добавления
+    openModal(modal); //Функция открытия попапа формы добавления
 };
 
 function startNameLink() {
