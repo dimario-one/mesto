@@ -27,8 +27,8 @@ function openModal(modal) {
 }
 
 //Функции слушатели открытия
-popupOpenBtn.addEventListener('click', () => popupAddBtnOpen(profilePopup)); //при клике на кнопку вызываю функцию в которой две функции 1. автозаполнения инпутов 2. функция открытия
-popupAddBtn.addEventListener('click', () => openModal(popupAddFormBtn));
+popupOpenBtn.addEventListener('click', () => openProfilePopup(profilePopup)); //при клике на кнопку вызываю функцию в которой две функции 1. автозаполнения инпутов 2. функция открытия
+popupAddBtn.addEventListener('click', () => popupAddBtnOpen(popupAddFormBtn));
 
 //Функция закрытия
 function closeModal(modal) {
@@ -146,14 +146,14 @@ function startNameLink() {
 
 //Спринт 4
 
-function openProfilePopup() {
-    startNameProf()
-    openModal(popupModal);
+function openProfilePopup(modal) {
+    startNameProf();
+    openModal(modal);
 }
 
 function startNameProf() {
-    formName.value = textTitle.textContent; //Перезаписал имя
-    formProf.value = textSubtitle.textContent; //Перезаписал профессию
+    formName.value = "Жак Ив Кусто"; //Перезаписал имя
+    formProf.value = "Исследователь океанов"; //Перезаписал профессию
 }
 
 function save(evt) {
