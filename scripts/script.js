@@ -152,8 +152,8 @@ function openProfilePopup(modal) {
 }
 
 function startNameProf() {
-    formName.value = "Жак Ив Кусто"; //Перезаписал имя
-    formProf.value = "Исследователь океанов"; //Перезаписал профессию
+    formName.value = textTitle.textContent; //Перезаписал имя
+    formProf.value = textSubtitle.textContent; //Перезаписал профессию
 }
 
 function save(evt) {
