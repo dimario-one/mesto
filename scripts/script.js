@@ -21,9 +21,38 @@ const popupImageCloseBtn = popupImage.querySelector(".popup__close-image"); // �
 
 //Функции
 
+// спринт 6
+
+//функция закрытия по клику мыши вне попапа
+
+function mouseClickPopup(evt) {
+    const container = evt.target.classList.contains("popup__container");
+    console.log(container, "container");
+    if (!container) {
+        const activeModal = document.querySelector('.popup_open'); // нашел активное попап окно по классу popup_open
+        if (activeModal) { // если есть активное модальное окно то тогда вызываем функцию закрытия и в эту функцию отправляем это же активное окно
+            closeModal(activeModal);
+        }
+    }
+};
+
+// Функция закрытия попапа по кнопке
+function handleKeydownEsc(evt) {
+    // Проверяем, была ли нажата escape 
+    if (evt.key === "Escape") {
+        // Если нажал на Escape то закрываем попап
+        const activeModal = document.querySelector('.popup_open'); // нашел активное попап окно по классу popup_open
+        if (activeModal) { // если есть активное модальное окно то тогда вызываем функцию закрытия и в эту функцию отправляем это же активное окно
+            closeModal(activeModal);
+        }
+    }
+};
+
 //Функция открытия
 function openModal(modal) {
     modal.classList.add('popup_open');
+    document.addEventListener('keydown', handleKeydownEsc); // обработчик модального окна находится в функции открытия для того чтоб когда модальное окно закрыто esc не срабатывал 
+    document.addEventListener('click', mouseClickPopup);
 }
 
 //Функции слушатели открытия
@@ -33,6 +62,8 @@ popupAddBtn.addEventListener('click', () => popupAddBtnOpen(popupAddFormBtn));
 //Функция закрытия
 function closeModal(modal) {
     modal.classList.remove('popup_open');
+    document.removeEventListener('keydown', handleKeydownEsc);
+    document.removeEventListener('click', mouseClickPopup);
 }
 
 //Функции слушатели закрытия
@@ -163,18 +194,6 @@ function save(evt) {
     closeModal(profilePopup);
 }
 
-// спринт 6
-// Функция закрытия попапа по кнопке
-const input = document.querySelectorAll('.popup');
-console.log(input, "input");
-
-input.addEventListener('keydown', function(evt) {
-    // Проверяем, была ли нажата escape 
-    if (evt.key === 'Escape') {
-        // Если нажал на Escape то закрываем попап
-        closeModal(modal); // функция закрытия попапа
-    };
-});
 
 // Слушатели событий
 

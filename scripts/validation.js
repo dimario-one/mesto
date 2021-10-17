@@ -35,10 +35,10 @@ const toggleButtonState = (button, isActive, inactiveButtonClass) => { // изм
 const setEventListers = (formElement, { inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass }) => { // Устанавливаем обработчики событий
     const inputsList = formElement.querySelectorAll(inputSelector); //Ищем все наши инпуты
     const submitButton = formElement.querySelector(submitButtonSelector); // нашли кнопку в форме чтоб ее заблокировать
-    const isFormValid = formElement.checkValidity();
     Array.from(inputsList).forEach(inputElement => { // На каждый инпут вешаем обработчик события(inputElement название события)
         inputElement.addEventListener('input', () => {
             checkInputValidity(formElement, inputElement, inputErrorClass)
+            const isFormValid = formElement.checkValidity(); //   проверяем валидна ли форма при каждом вводе поэтому она ноходится в массиве
             toggleButtonState(submitButton, isFormValid, inactiveButtonClass) // функция блокирования 
         })
     })
