@@ -163,6 +163,19 @@ function save(evt) {
     closeModal(profilePopup);
 }
 
+// спринт 6
+// Функция закрытия попапа по кнопке
+const input = document.querySelectorAll('.popup');
+console.log(input, "input");
+
+input.addEventListener('keydown', function(evt) {
+    // Проверяем, была ли нажата escape 
+    if (evt.key === 'Escape') {
+        // Если нажал на Escape то закрываем попап
+        closeModal(modal); // функция закрытия попапа
+    };
+});
+
 // Слушатели событий
 
 // Сприн 4
