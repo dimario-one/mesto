@@ -26,10 +26,8 @@ const popupImageCloseBtn = popupImage.querySelector(".popup__close-image"); // �
 //функция закрытия по клику мыши вне попапа
 
 function mouseClickPopup(evt) {
-    const container = evt.target.classList.contains("popup");
-    console.log(container, "container");
-    if (container) {
-        closeModal(evt.currentTarget); //осуществлять поиск активного класса не обязательно если ты вешаешь обработчик на modal
+    if (evt.target.classList.contains("popup")) {
+        closeModal(evt.currentTarget); //осуществлять поиск активного класса как  в функции ESC не обязательно если ты вешаешь обработчик на modal
         //Можно использовать evt.currentTarget, в этой переменной содержится элемент на котором повесили обработчик события, это и будет наш modal 
     }
 };
