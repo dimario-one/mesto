@@ -1,4 +1,8 @@
 .popup__input {
+    margin-top: 0;
+    margin-right: 22px;
+    margin-left: 22px;
+    margin-bottom: 5px;
     width: 238px;
     padding: 0;
     border-top: none;
@@ -10,7 +14,6 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
-    margin: 0 22px 5px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -19,6 +22,6 @@
 @media screen and (min-width: 760px) {
     .popup__input {
         width: 358px;
-        margin: 0 36px 48px;
+        margin: 0 36px 5px;
     }
 }
