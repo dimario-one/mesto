@@ -26,13 +26,11 @@ const popupImageCloseBtn = popupImage.querySelector(".popup__close-image"); // �
 //функция закрытия по клику мыши вне попапа
 
 function mouseClickPopup(evt) {
-    const container = evt.target.classList.contains("popup__container");
+    const container = evt.target.classList.contains("popup");
     console.log(container, "container");
-    if (!container) {
-        const activeModal = document.querySelector('.popup_open'); // нашел активное попап окно по классу popup_open
-        if (activeModal) { // если есть активное модальное окно то тогда вызываем функцию закрытия и в эту функцию отправляем это же активное окно
-            closeModal(activeModal);
-        }
+    if (container) {
+        closeModal(evt.currentTarget); //осуществлять поиск активного класса не обязательно если ты вешаешь обработчик на modal
+        //Можно использовать evt.currentTarget, в этой переменной содержится элемент на котором повесили обработчик события, это и будет наш modal 
     }
 };
 
@@ -52,7 +50,7 @@ function handleKeydownEsc(evt) {
 function openModal(modal) {
     modal.classList.add('popup_open');
     document.addEventListener('keydown', handleKeydownEsc); // обработчик модального окна находится в функции открытия для того чтоб когда модальное окно закрыто esc не срабатывал 
-    document.addEventListener('click', mouseClickPopup);
+    modal.addEventListener('click', mouseClickPopup);
 }
 
 //Функции слушатели открытия
@@ -63,7 +61,7 @@ popupAddBtn.addEventListener('click', () => popupAddBtnOpen(popupAddFormBtn));
 function closeModal(modal) {
     modal.classList.remove('popup_open');
     document.removeEventListener('keydown', handleKeydownEsc);
-    document.removeEventListener('click', mouseClickPopup);
+    modal.removeEventListener('click', mouseClickPopup);
 }
 
 //Функции слушатели закрытия
