@@ -23,6 +23,10 @@ const popupImageCloseBtn = popupImage.querySelector(".popup__close-image"); // �
 
 // спринт 6
 
+function resetCreateBtn(popupCreateBtn) { // функция добавления класса неактивности кнопке создать
+    popupCreateBtn.classList.add('popup__button_disabled');
+}
+
 //функция закрытия по клику мыши вне попапа
 
 function mouseClickPopup(evt) {
@@ -37,15 +41,13 @@ function handleKeydownEsc(evt) {
     // Проверяем, была ли нажата escape 
     if (evt.key === "Escape") {
         // Если нажал на Escape то закрываем попап
-        const activeModal = document.querySelector('.popup_open'); // нашел активное попап окно по классу popup_open
-        if (activeModal) { // если есть активное модальное окно то тогда вызываем функцию закрытия и в эту функцию отправляем это же активное окно
-            closeModal(activeModal);
-        }
+        closeModal(activeModal);
     }
 };
 
 //Функция открытия
 function openModal(modal) {
+    resetCreateBtn(popupCreateBtn);
     modal.classList.add('popup_open');
     document.addEventListener('keydown', handleKeydownEsc); // обработчик модального окна находится в функции открытия для того чтоб когда модальное окно закрыто esc не срабатывал 
     modal.addEventListener('click', mouseClickPopup);
@@ -99,31 +101,29 @@ function likeCard(e) {
 //Функция добавления новой карточки
 function createCard(name, link) { // Два аргумента в функцию имя и ссылка
     const cardTemplate = document.querySelector("#cards__template"); //Нашел что буду добавлять
-    const clone = cardTemplate.content.cloneNode(true); //Клонирую содержимое строки
-    clone.querySelector(".cards__type_temlate_text").textContent = name; // нашел и вставил содержимое строки в name
-    const cardsPic = clone.querySelector(".cards__type_temlate_pic"); // нашел  содержимое строки 
+    const cloneСardTemplate = cardTemplate.content.cloneNode(true); //Клонирую содержимое строки
+    cloneСardTemplate.querySelector(".cards__type_temlate_text").textContent = name; // нашел и вставил содержимое строки в name
+    const cardsPic = cloneСardTemplate.querySelector(".cards__type_temlate_pic"); // нашел  содержимое строки 
     cardsPic.src = link; // вставил путь  link
     cardsPic.alt = name; // вставил содержимое name
     cardsPic.addEventListener("click", openPopupImage); // добавил слушатель событий открытия на карточку
     //
-    const cardsBasket = clone.querySelector(".cards__basket"); //Функция удаления карточки
+    const cardsBasket = cloneСardTemplate.querySelector(".cards__basket"); //Функция удаления карточки
     cardsBasket.addEventListener('click', deleteCard);
     //
-    const cardsLike = clone.querySelector(".cards__like"); // Функция лайка
+    const cardsLike = cloneСardTemplate.querySelector(".cards__like"); // Функция лайка
     cardsLike.addEventListener('click', likeCard);
     //
 
     //
-    return clone; //Возвращает значение, чтобы когда был вызов функции отдавала готовое значение
+    return cloneСardTemplate; //Возвращает значение, чтобы когда был вызов функции отдавала готовое значение
 }
 
 function newCardAdd(e) {
     e.preventDefault(); //
-    if (formAddName.value.length > 0 && formAddLink.value.length > 0) {
-        const clone = createCard(formAddName.value, formAddLink.value);
-        cardsUl.prepend(clone); //вставляю в список
-        closeModal(popupAddFormBtn);
-    }
+    const clone = createCard(formAddName.value, formAddLink.value);
+    cardsUl.prepend(clone); //вставляю в список
+    closeModal(popupAddFormBtn);
 }
 
 const initialCardsContent = ((initialCards) => {
@@ -183,7 +183,7 @@ function startNameProf() {
     formProf.value = textSubtitle.textContent; //Перезаписал профессию
 }
 
-function save(evt) {
+function saveNameProf(evt) {
     evt.preventDefault();
     textTitle.textContent = formName.value; /*перезаписал новое имя*/
     textSubtitle.textContent = formProf.value; /*перезаписал новую професию*/
@@ -194,6 +194,6 @@ function save(evt) {
 // Слушатели событий
 
 // Сприн 4
-popupForm.addEventListener('submit', save);
+popupForm.addEventListener('submit', saveNameProf);
 // Спринт 5
 popupAddFormBtn.addEventListener('submit', newCardAdd);

@@ -19,10 +19,6 @@ const checkInputValidity = (formElement, inputElement, config) => {
 }
 
 const toggleButtonState = (button, isActive, inactiveButtonClass) => { // изменение состояния кнопки чтоб если форма не валидна она была не активна
-    console.log(button, "button");
-    console.log(isActive, "isActive");
-    console.log(inactiveButtonClass, "inactiveButtonClass");
-
     if (isActive) {
         button.classList.remove(inactiveButtonClass); // если хотим кнопку разблокировать
         button.disabled = false;
@@ -45,9 +41,7 @@ const setEventListers = (formElement, { inputSelector, submitButtonSelector, ina
 
     formElement.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
         evt.preventDefault();
-        // console.log('отправка формы');
     })
-
 }
 
 const enableValidation = ({ formSelector, ...rest }) => {

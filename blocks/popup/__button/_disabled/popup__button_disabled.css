@@ -1,5 +1,13 @@
 .popup__button_disabled {
-    border: 1px solid rgba(0, 0, 0, .2);
-    color: rgba(0, 0, 0, .5);
-    background: #e9e9e9;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #C4C4C4;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 2px;
 }
