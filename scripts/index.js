@@ -22,11 +22,6 @@ const popupImageCloseBtn = popupImage.querySelector(".popup__close-image"); // �
 //Функции
 
 // спринт 6
-
-function resetCreateBtn(popupCreateBtn) { // функция добавления класса неактивности кнопке создать
-    popupCreateBtn.classList.add('popup__button_disabled');
-}
-
 //функция закрытия по клику мыши вне попапа
 
 function mouseClickPopup(evt) {
@@ -47,7 +42,6 @@ function handleKeydownEsc(evt) {
 
 //Функция открытия
 function openModal(modal) {
-    resetCreateBtn(popupCreateBtn);
     modal.classList.add('popup_open');
     document.addEventListener('keydown', handleKeydownEsc); // обработчик модального окна находится в функции открытия для того чтоб когда модальное окно закрыто esc не срабатывал 
     modal.addEventListener('click', mouseClickPopup);
@@ -93,7 +87,6 @@ function deleteCard(e) {
 
 // Функция лайка
 function likeCard(e) {
-    e.preventDefault();
     const like = e.currentTarget;
     like.classList.toggle("cards__like_active");
 }
@@ -162,6 +155,7 @@ const initialCards = [{
 initialCardsContent(initialCards);
 
 function popupAddBtnOpen(modal) {
+    toggleButtonState(popupCreateBtn, false, validationConfig.inactiveButtonClass);
     startNameLink();
     openModal(modal); //Функция открытия попапа формы добавления
 };
