@@ -1,3 +1,9 @@
+//импорт классов
+
+import { Card } from "./card.js";
+import { validationConfig, FormValidator } from "./FormValidator.js";
+
+
 //Переменные
 const profilePopup = document.querySelector(".popup_type_edit"); /*Нашел popup*/
 const popupOpenBtn = document.querySelector(".profile__edit-button"); /*Нашел кнопку редактирования*/
@@ -15,11 +21,61 @@ const formAddName = document.querySelector(".popup__input_type_name-pic"); /*Н�
 const formAddLink = document.querySelector(".popup__input_type_link"); /*Нашел инпут ссылки местности*/
 const templateText = document.querySelector(".cards__type_temlate_text"); //нашел куда буду записывать имя карточки при еее создании
 const templateLink = document.querySelector(".cards__type_temlate_pic"); //нашел куда буду сохранять ссылк
+const popupImages = document.querySelector(".popup_type_image");
 const popupImage = document.querySelector(".popup_type_image"); //Нашел картинку
 const cardsUl = document.querySelector(".cards__items"); // Нашел список куда буду добавлять карточку
 const popupImageCloseBtn = popupImage.querySelector(".popup__close-image"); // Нашел кнопку закрытия попап с картинкой
+const initialCards = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+const cardList = document.querySelector(".cards__items");
+
+
 
 //Функции
+//
+function handleImageClick(initialCards) {
+    popupImages.querySelector(".popup__pic").src = initialCards.link;
+    popupImages.querySelector(".popup__title_white").textContent = initialCards.name;
+    openModal(popupImages);
+}
+
+//спринт 7
+//создаем новай класс 
+
+const validationFormAdd = new FormValidator(validationConfig, '.popup_type_add');
+const validationFormEdit = new FormValidator(validationConfig, '.popup_type_edit');
+
+
+
+//
+initialCards.forEach(function(elementData) {
+    const card = new Card(elementData, "#cards__template", handleImageClick).render();
+    cardList.append(card);
+});
 
 // спринт 6
 //функция закрытия по клику мыши вне попапа
@@ -63,34 +119,6 @@ popupCloseBtn.addEventListener('click', () => closeModal(profilePopup));
 popupCloseAddBtn.addEventListener('click', () => closeModal(popupAddFormBtn));
 popupImageCloseBtn.addEventListener('click', () => closeModal(popupImage));
 
-//функция открытия попапа картинки
-function openPopupImage(e) {
-    const card = e.currentTarget.closest(".cards__item"); // Нашел где все лежит
-    const image = card.querySelector('.cards__type_temlate_pic'); //
-    const imageSrc = image.src; //
-    const popupPic = popupImage.querySelector(".popup__pic"); //
-    popupPic.src = imageSrc; //
-    //
-    const text = card.querySelector('.cards__type_temlate_text'); // Нашел элемент что буду сохранять
-
-    const popupTitle = popupImage.querySelector(".popup__title"); // нашел куда буду сохранять
-
-    popupTitle.textContent = text.textContent; // Перезаписал значение
-    openModal(popupImage); //функция открытия попапа
-}
-
-//Функция удаления карточки
-function deleteCard(e) {
-    const card = e.currentTarget.closest(".cards__item");
-    card.remove();
-}
-
-// Функция лайка
-function likeCard(e) {
-    const like = e.currentTarget;
-    like.classList.toggle("cards__like_active");
-}
-
 //Функция добавления новой карточки
 function createCard(name, link) { // Два аргумента в функцию имя и ссылка
     const cardTemplate = document.querySelector("#cards__template"); //Нашел что буду добавлять
@@ -99,13 +127,13 @@ function createCard(name, link) { // Два аргумента в функцию
     const cardsPic = cloneСardTemplate.querySelector(".cards__type_temlate_pic"); // нашел  содержимое строки 
     cardsPic.src = link; // вставил путь  link
     cardsPic.alt = name; // вставил содержимое name
-    cardsPic.addEventListener("click", openPopupImage); // добавил слушатель событий открытия на карточку
+    //cardsPic.addEventListener("click", openPopupImage); // добавил слушатель событий открытия на карточку
     //
-    const cardsBasket = cloneСardTemplate.querySelector(".cards__basket"); //Функция удаления карточки
-    cardsBasket.addEventListener('click', deleteCard);
+    // const cardsBasket = cloneСardTemplate.querySelector(".cards__basket"); //Функция удаления карточки
+    //cardsBasket.addEventListener('click', deleteCard);
     //
-    const cardsLike = cloneСardTemplate.querySelector(".cards__like"); // Функция лайка
-    cardsLike.addEventListener('click', likeCard);
+    // const cardsLike = cloneСardTemplate.querySelector(".cards__like"); // Функция лайка
+    // cardsLike.addEventListener('click', likeCard);
     //
 
     //
@@ -119,43 +147,17 @@ function newCardAdd(e) {
     closeModal(popupAddFormBtn);
 }
 
-const initialCardsContent = ((initialCards) => {
+/*const initialCardsContent = ((initialCards) => {
     initialCards.map((item) => {
         const clone = createCard(item.name, item.link); // на вход функции отправляем два аргумента из item  берем два значения name и link
         cardsUl.prepend(clone); //вставляю в список
     });
-});
+});*/
 
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-initialCardsContent(initialCards);
+//initialCardsContent(initialCards);
 
 function popupAddBtnOpen(modal) {
-    toggleButtonState(popupCreateBtn, false, validationConfig.inactiveButtonClass);
+    validationFormAdd.toggleButtonState(false);
     startNameLink();
     openModal(modal); //Функция открытия попапа формы добавления
 };
