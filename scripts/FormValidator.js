@@ -9,8 +9,11 @@
  export class FormValidator {
      constructor(config, popupFormElement) { // 
          this._config = config;
-         this._element = popupFormElement;
-         this._submitButton = config.submitButtonSelector;
+         //this._element = popupFormElement;
+
+         this._element = document.querySelector(popupFormElement);
+
+         this._submitButton = this._element.querySelector(this._config.submitButtonSelector);
      }
 
      showError = (errorElement, inputElement) => { // метод показа ошибки
@@ -33,10 +36,10 @@
          }
      }
 
-     /*disabledButton = () => {
+     disabledButton = () => {
          this._submitButton.classList.add(this._config.inactiveButtonClass);
          this._submitButton.disabled = 'disabled';
-     }*/
+     }
 
 
      toggleButtonState = (isActive) => { // изменение состояния кнопки чтоб если форма не валидна она была не активна
