@@ -9,40 +9,39 @@
  export class FormValidator {
      constructor(config, popupFormElement) { // 
          this._config = config;
-         //this._element = popupFormElement;
 
          this._element = document.querySelector(popupFormElement);
-
          this._submitButton = this._element.querySelector(this._config.submitButtonSelector);
+         this._formElement = this._element.querySelector(".popup__form");
      }
 
-     showError = (errorElement, inputElement) => { // метод показа ошибки
+     _showError = (errorElement, inputElement) => { // метод показа ошибки
          errorElement.textContent = inputElement.validationMessage;
          inputElement.classList.add(this._config.inputErrorClass)
      }
 
-     hideError = (errorElement, inputElement) => { // метод удаления ошибки
+     _hideError = (errorElement, inputElement) => { // метод удаления ошибки
          errorElement.textContent = inputElement.validationMessage;
          inputElement.classList.remove(this._config.inputErrorClass)
      }
 
-     checkInputValidity = (inputElement) => {
+     _checkInputValidity = (inputElement) => {
          const isInputNotValid = !inputElement.validity.valid; // создаем переменную которая хранит что форма не валидна
-         const errorElement = this._element.querySelector(`#${inputElement.id}-error`); // находим инпут по чтоб взять из него сообщение об ошибке
+         const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); // находим инпут по чтоб взять из него сообщение об ошибке
          if (isInputNotValid) { // если форма не валидна то показать ошибку в спан который рядом с инпутом
-             showError(errorElement, inputElement);
+             this._showError(errorElement, inputElement);
          } else {
-             hideError(errorElement, inputElement);
+             this._hideError(errorElement, inputElement);
          }
      }
 
-     disabledButton = () => {
+     _disabledButton = () => {
          this._submitButton.classList.add(this._config.inactiveButtonClass);
          this._submitButton.disabled = 'disabled';
      }
 
 
-     toggleButtonState = (isActive) => { // изменение состояния кнопки чтоб если форма не валидна она была не активна
+     _toggleButtonState = (isActive) => { // изменение состояния кнопки чтоб если форма не валидна она была не активна
          if (isActive) {
              this._submitButton.classList.remove(this._config.inactiveButtonClass); // если хотим кнопку разблокировать
              this._submitButton.disabled = false;
@@ -53,14 +52,14 @@
      }
 
      _setEventListers = () => { // Устанавливаем обработчики событий
-         this._inputsList = this._element.querySelectorAll(this._config.inputSelector); //Ищем все наши инпуты
-         this._submitButton = this._element.querySelector(this._config.submitButtonSelector); // нашли кнопку в форме чтоб ее заблокировать
+         this._inputsList = this._formElement.querySelectorAll(this._config.inputSelector); //Ищем все наши инпуты
+         this._submitButton = this._formElement.querySelector(this._config.submitButtonSelector); // нашли кнопку в форме чтоб ее заблокировать
 
-         Array.from(inputsList).forEach(inputElement => { // На каждый инпут вешаем обработчик события(inputElement название события)
+         Array.from(this._inputsList).forEach(inputElement => { // На каждый инпут вешаем обработчик события(inputElement название события)
              inputElement.addEventListener('input', () => {
-                 checkInputValidity(inputElement)
-                 const isFormValid = this._element.checkValidity(); //   проверяем валидна ли форма при каждом вводе поэтому она ноходится в массиве
-                 toggleButtonState(isFormValid) // функция блокирования 
+                 this._checkInputValidity(inputElement)
+                 const isFormValid = this._formElement.checkValidity(); //   проверяем валидна ли форма при каждом вводе поэтому она ноходится в массиве
+                 this._toggleButtonState(isFormValid) // функция блокирования 
              })
          })
 

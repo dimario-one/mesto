@@ -23,11 +23,10 @@ export class Card {
     }
 
     render() {
-        console.log(this._popup, "this._popup");
         // Запишем разметку в приватное поле _element. 
         // Так у других элементов появится доступ к ней.
         this._element = this._getTemplate();
-        this._setEventListeners(); // слушатель метода лайка в отрисовке карточки
+        this._setEventListeners(); // слушатель методов в отрисовке карточки
         // Добавим данные
         this._element.querySelector('.cards__type_temlate_pic').src = this.initialCards.link;
         this._element.querySelector('.cards__type_temlate_text').textContent = this.initialCards.name;

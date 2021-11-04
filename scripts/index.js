@@ -67,11 +67,20 @@ function handleImageClick(initialCards) {
 //создаем новай класс 
 
 const validationFormAdd = new FormValidator(validationConfig, '.popup_type_add');
+validationFormAdd.enableValidation();
 const validationFormEdit = new FormValidator(validationConfig, '.popup_type_edit');
+validationFormEdit.enableValidation();
 
+function createCard(data) {
+    return new Card(data, "#cards__template", handleImageClick).render();
+}
 
+function newCardAdd(e) {
+    e.preventDefault(); //
+    cardsUl.prepend(createCard({ name: formAddName.value, link: formAddLink.value })); //вставляю в список
+    closeModal(popupAddFormBtn);
+}
 
-//
 initialCards.forEach(function(elementData) {
     const card = new Card(elementData, "#cards__template", handleImageClick).render();
     cardList.append(card);
@@ -89,6 +98,7 @@ function mouseClickPopup(evt) {
 
 // Функция закрытия попапа по кнопке
 function handleKeydownEsc(evt) {
+    const activeModal = document.querySelector(".popup_open");
     // Проверяем, была ли нажата escape 
     if (evt.key === "Escape") {
         // Если нажал на Escape то закрываем попап
@@ -119,45 +129,9 @@ popupCloseBtn.addEventListener('click', () => closeModal(profilePopup));
 popupCloseAddBtn.addEventListener('click', () => closeModal(popupAddFormBtn));
 popupImageCloseBtn.addEventListener('click', () => closeModal(popupImage));
 
-//Функция добавления новой карточки
-function createCard(name, link) { // Два аргумента в функцию имя и ссылка
-    const cardTemplate = document.querySelector("#cards__template"); //Нашел что буду добавлять
-    const cloneСardTemplate = cardTemplate.content.cloneNode(true); //Клонирую содержимое строки
-    cloneСardTemplate.querySelector(".cards__type_temlate_text").textContent = name; // нашел и вставил содержимое строки в name
-    const cardsPic = cloneСardTemplate.querySelector(".cards__type_temlate_pic"); // нашел  содержимое строки 
-    cardsPic.src = link; // вставил путь  link
-    cardsPic.alt = name; // вставил содержимое name
-    //cardsPic.addEventListener("click", openPopupImage); // добавил слушатель событий открытия на карточку
-    //
-    // const cardsBasket = cloneСardTemplate.querySelector(".cards__basket"); //Функция удаления карточки
-    //cardsBasket.addEventListener('click', deleteCard);
-    //
-    // const cardsLike = cloneСardTemplate.querySelector(".cards__like"); // Функция лайка
-    // cardsLike.addEventListener('click', likeCard);
-    //
-
-    //
-    return cloneСardTemplate; //Возвращает значение, чтобы когда был вызов функции отдавала готовое значение
-}
-
-function newCardAdd(e) {
-    e.preventDefault(); //
-    const clone = createCard(formAddName.value, formAddLink.value);
-    cardsUl.prepend(clone); //вставляю в список
-    closeModal(popupAddFormBtn);
-}
-
-/*const initialCardsContent = ((initialCards) => {
-    initialCards.map((item) => {
-        const clone = createCard(item.name, item.link); // на вход функции отправляем два аргумента из item  берем два значения name и link
-        cardsUl.prepend(clone); //вставляю в список
-    });
-});*/
-
-//initialCardsContent(initialCards);
 
 function popupAddBtnOpen(modal) {
-    validationFormAdd.toggleButtonState(false);
+    validationFormAdd._toggleButtonState(false);
     startNameLink();
     openModal(modal); //Функция открытия попапа формы добавления
 };
