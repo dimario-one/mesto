@@ -15,23 +15,23 @@
          this._formElement = this._element.querySelector(".popup__form");
      }
 
-     _showError = (errorElement, inputElement) => { // метод показа ошибки
-         errorElement.textContent = inputElement.validationMessage;
-         inputElement.classList.add(this._config.inputErrorClass)
+     _showError = () => { // метод показа ошибки
+         this._errorElement.textContent = this._inputElement.validationMessage;
+         this._inputElement.classList.add(this._config.inputErrorClass)
      }
 
-     _hideError = (errorElement, inputElement) => { // метод удаления ошибки
-         errorElement.textContent = inputElement.validationMessage;
-         inputElement.classList.remove(this._config.inputErrorClass)
+     _hideError = () => { // метод удаления ошибки
+         this._errorElement.textContent = this._inputElement.validationMessage;
+         this._inputElement.classList.remove(this._config.inputErrorClass)
      }
 
-     _checkInputValidity = (inputElement) => {
-         const isInputNotValid = !inputElement.validity.valid; // создаем переменную которая хранит что форма не валидна
-         const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); // находим инпут по чтоб взять из него сообщение об ошибке
+     _checkInputValidity = () => {
+         const isInputNotValid = !this._inputElement.validity.valid; // создаем переменную которая хранит что форма не валидна
+         this._errorElement = this._formElement.querySelector(`#${this._inputElement.id}-error`); // находим инпут по чтоб взять из него сообщение об ошибке
          if (isInputNotValid) { // если форма не валидна то показать ошибку в спан который рядом с инпутом
-             this._showError(errorElement, inputElement);
+             this._showError();
          } else {
-             this._hideError(errorElement, inputElement);
+             this._hideError();
          }
      }
 
@@ -57,7 +57,8 @@
 
          Array.from(this._inputsList).forEach(inputElement => { // На каждый инпут вешаем обработчик события(inputElement название события)
              inputElement.addEventListener('input', () => {
-                 this._checkInputValidity(inputElement)
+                 this._inputElement = inputElement;
+                 this._checkInputValidity()
                  const isFormValid = this._formElement.checkValidity(); //   проверяем валидна ли форма при каждом вводе поэтому она ноходится в массиве
                  this._toggleButtonState(isFormValid) // функция блокирования 
              })

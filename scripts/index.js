@@ -1,6 +1,6 @@
 //импорт классов
 
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 import { validationConfig, FormValidator } from "./FormValidator.js";
 
 
@@ -25,7 +25,7 @@ const popupImages = document.querySelector(".popup_type_image");
 const popupImage = document.querySelector(".popup_type_image"); //Нашел картинку
 const cardsUl = document.querySelector(".cards__items"); // Нашел список куда буду добавлять карточку
 const popupImageCloseBtn = popupImage.querySelector(".popup__close-image"); // Нашел кнопку закрытия попап с картинкой
-const initialCards = [{
+const initialCard = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
@@ -57,9 +57,9 @@ const cardList = document.querySelector(".cards__items");
 
 //Функции
 //
-function handleImageClick(initialCards) {
-    popupImages.querySelector(".popup__pic").src = initialCards.link;
-    popupImages.querySelector(".popup__title_white").textContent = initialCards.name;
+function handleImageClick(initialCard) {
+    popupImages.querySelector(".popup__pic").src = initialCard.link;
+    popupImages.querySelector(".popup__title_white").textContent = initialCard.name;
     openModal(popupImages);
 }
 
@@ -81,7 +81,7 @@ function newCardAdd(e) {
     closeModal(popupAddFormBtn);
 }
 
-initialCards.forEach(function(elementData) {
+initialCard.forEach(function(elementData) {
     const card = new Card(elementData, "#cards__template", handleImageClick).render();
     cardList.append(card);
 });

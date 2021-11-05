@@ -1,9 +1,9 @@
 export class Card {
-    constructor(initialCards, templateSelector, handleImageClick) { //
-        this._name = initialCards.name;
-        this._link = initialCards.link;
+    constructor(initialCard, templateSelector, handleImageClick) { //
+        this._name = initialCard.name;
+        this._link = initialCard.link;
         this._handleImageClick = handleImageClick;
-        this.initialCards = initialCards;
+        this.initialCard = initialCard;
         this._templateSelector = templateSelector;
         this._element = null;
         this._deleteCard = this._deleteCard.bind(this);
@@ -28,8 +28,8 @@ export class Card {
         this._element = this._getTemplate();
         this._setEventListeners(); // слушатель методов в отрисовке карточки
         // Добавим данные
-        this._element.querySelector('.cards__type_temlate_pic').src = this.initialCards.link;
-        this._element.querySelector('.cards__type_temlate_text').textContent = this.initialCards.name;
+        this._element.querySelector('.cards__type_temlate_pic').src = this.initialCard.link;
+        this._element.querySelector('.cards__type_temlate_text').textContent = this.initialCard.name;
         // Вернём элемент наружу
         return this._element;
     }
