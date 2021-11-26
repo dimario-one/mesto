@@ -1,11 +1,11 @@
 //импорт классов
-import './pages/index.css';
-import { Card } from "./components/Card.js";
-import { validationConfig, FormValidator } from "./components/FormValidator.js";
-import { PopupWithForm } from "./components/PopupWithForm.js";
-import { PopupWithImage } from "./components/PopupWithImage.js";
-import Section from "./components/Section.js";
-import { UserInfo } from "./components/UserInfo.js";
+import './index.css';
+import { Card } from "../components/Card.js";
+import { validationConfig, FormValidator } from "../components/FormValidator.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
+import { UserInfo } from "../components/UserInfo.js";
 import {
     profilePopup,
     popupOpenBtn,
@@ -15,7 +15,7 @@ import {
     popupAddBtn,
     popupImage,
     initialCards,
-} from "./utils/constants.js"
+} from "../utils/constants.js"
 
 function submitHandler(userInfo) {
     currentUserInfo.setUserInfo(userInfo);
