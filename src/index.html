@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
+
 </head>
 
 <body class="page">
@@ -43,7 +43,7 @@
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input class="popup__input popup__input_type_name" placeholder="Введите имя" type="text" id="name-card" name="name" minlength="2" maxlength="40">
                 <span id="name-card-error" class="popup__error popup__error_visible"></span>
-                <input class="popup__input popup__input_type_prof" placeholder="Введите профессию" type="text" id="prof-card" name="prof" minlength="2" maxlength="200">
+                <input class="popup__input popup__input_type_prof" placeholder="Введите профессию" type="text" id="prof-card" name="job" minlength="2" maxlength="200">
                 <span id="prof-card-error" class="popup__error popup__error_visible"></span>
                 <button type="submit" class="popup__button popup__save-button">Сохранить</button>
             </form>
@@ -54,7 +54,7 @@
             <form class="popup__form" name="popup__addform" novalidate>
                 <button class="popup__close-button popup__close-AddButton" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <input class="popup__input popup__input_type_name-pic" placeholder="Название" type="text" id="pic-card" name="name-pic" minlength="2" maxlength="30" required>
+                <input class="popup__input popup__input_type_name-pic" placeholder="Название" type="text" id="pic-card" name="name" minlength="2" maxlength="30" required>
                 <span id="pic-card-error" class="popup__error popup__error_visible"></span>
                 <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="url" id="link-card" name="link" required>
                 <span id="link-card-error" class="popup__error popup__error_visible"></span>
@@ -82,7 +82,7 @@
         </li>
     </template>
 
-    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./src/index.js"></script>
 </body>
 
 </html>

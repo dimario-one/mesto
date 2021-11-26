@@ -1,5 +1,5 @@
 export class Card {
-    constructor(initialCard, templateSelector, handleImageClick) { //
+    constructor(initialCard, templateSelector, handleImageClick) {
         this._name = initialCard.name;
         this._link = initialCard.link;
         this._handleImageClick = handleImageClick;
@@ -34,7 +34,6 @@ export class Card {
         return this._element;
     }
 
-    //метод Zoom попапа
 
     // назначаем слушатель на кнопку
     _setEventListeners() {
@@ -49,7 +48,6 @@ export class Card {
         this._element.querySelector('.cards__pic').addEventListener('click', () => {
             this._handleImageClick({ name: this._name, link: this._link });
         });
-
 
     }
 
