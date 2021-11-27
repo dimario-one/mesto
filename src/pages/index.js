@@ -15,6 +15,8 @@ import {
     popupAddBtn,
     popupImage,
     initialCards,
+    formEdit,
+    formAdd
 } from "../utils/constants.js"
 
 function submitHandler(userInfo) {
@@ -58,10 +60,10 @@ currentSection.renderItems();
 const currentUserInfo = new UserInfo({ nameEditProfile: ".profile__text-title", jobEditProfile: ".profile__text-subtitle" });
 currentUserInfo.setUserInfo({ name: "Жак-Ив Кусто", job: "Исследователь океана" });
 
-const validationFormAdd = new FormValidator(validationConfig, '.popup_type_add');
+const validationFormAdd = new FormValidator(validationConfig, formAdd);
 validationFormAdd.enableValidation();
 
-const validationFormEdit = new FormValidator(validationConfig, '.popup_type_edit');
+const validationFormEdit = new FormValidator(validationConfig, formEdit);
 validationFormEdit.enableValidation();
 
 function createCard(data) {

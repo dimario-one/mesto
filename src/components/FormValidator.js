@@ -8,9 +8,9 @@
  }
 
  export class FormValidator {
-     constructor(config, popupFormElement) { // 
+     constructor(config, form) { // 
          this._config = config;
-         this._element = document.querySelector(popupFormElement);
+         this._element = document.querySelector(form);
          this._submitButton = this._element.querySelector(this._config.submitButtonSelector);
          this._formElement = this._element.querySelector(this._config.formSelector);
      }
