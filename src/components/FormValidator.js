@@ -12,8 +12,7 @@
          this._config = config;
          this._element = document.querySelector(formElement);
          this._submitButton = this._element.querySelector(this._config.submitButtonSelector);
-         this._formElement = this._element.querySelector(this._config.submitButtonSelector);
-         this._disabledButton = this._disabledButton.bind(this);
+         this._formSelector = this._element.querySelector(this._config.formSelector);
      }
 
      _showError = () => { // метод показа ошибки
@@ -28,7 +27,7 @@
 
      _checkInputValidity = () => {
          const isInputNotValid = !this._inputElement.validity.valid; // создаем переменную которая хранит что форма не валидна
-         this._errorElement = this._formElement.querySelector(`#${this._inputElement.id}-error`); // находим инпут по чтоб взять из него сообщение об ошибке
+         this._errorElement = this._formSelector.querySelector(`#${this._inputElement.id}-error`); // находим инпут по чтоб взять из него сообщение об ошибке
          if (isInputNotValid) { // если форма не валидна то показать ошибку в спан который рядом с инпутом
              this._showError();
          } else {
@@ -36,7 +35,7 @@
          }
      }
 
-     _disabledButton() {
+     _disabledButton = () => {
          this._submitButton.classList.add(this._config.inactiveButtonClass);
          this._submitButton.disabled = 'disabled';
      }
@@ -53,8 +52,8 @@
      }
 
      _setEventListers = () => { // Устанавливаем обработчики событий
-         this._inputsList = this._formElement.querySelectorAll(this._config.inputSelector); //Ищем все наши инпуты
-         this._submitButton = this._formElement.querySelector(this._config.submitButtonSelector); // нашли кнопку в форме чтоб ее заблокировать
+         this._inputsList = this._formSelector.querySelectorAll(this._config.inputSelector); //Ищем все наши инпуты
+         this._submitButton = this._formSelector.querySelector(this._config.submitButtonSelector); // нашли кнопку в форме чтоб ее заблокировать
 
          const isFormValid = this._formElement.checkValidity();
          this._toggleButtonState(isFormValid);
@@ -69,6 +68,7 @@
          this._element.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
              evt.preventDefault();
              this._toggleButtonState(false);
+
          })
      }
 
