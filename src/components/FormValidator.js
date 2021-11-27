@@ -13,6 +13,7 @@
          this._element = document.querySelector(formElement);
          this._submitButton = this._element.querySelector(this._config.submitButtonSelector);
          this._formElement = this._element.querySelector(this._config.submitButtonSelector);
+         this._disabledButton = this._disabledButton.bind(this);
      }
 
      _showError = () => { // метод показа ошибки
@@ -35,7 +36,7 @@
          }
      }
 
-     _disabledButton = () => {
+     _disabledButton() {
          this._submitButton.classList.add(this._config.inactiveButtonClass);
          this._submitButton.disabled = 'disabled';
      }
