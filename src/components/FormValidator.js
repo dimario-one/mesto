@@ -40,7 +40,6 @@
          this._submitButton.disabled = 'disabled';
      }
 
-
      _toggleButtonState = (isActive) => { // изменение состояния кнопки чтоб если форма не валидна она была не активна
          if (isActive) {
              this._submitButton.classList.remove(this._config.inactiveButtonClass); // если хотим кнопку разблокировать
@@ -48,7 +47,6 @@
          } else {
              this._disabledButton();
          }
-
      }
 
      _setEventListers = () => { // Устанавливаем обработчики событий
@@ -68,7 +66,6 @@
          this._element.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
              evt.preventDefault();
              this._toggleButtonState(false);
-
          })
      }
 
