@@ -60,12 +60,15 @@
              inputElement.addEventListener('input', () => {
                  this._inputElement = inputElement;
                  this._checkInputValidity();
+                 const isFormValid = this._formElement.checkValidity();
+                 this._toggleButtonState(isFormValid);
              })
          })
 
          this._element.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
              evt.preventDefault();
              this._toggleButtonState(false);
+
          })
      }
 
