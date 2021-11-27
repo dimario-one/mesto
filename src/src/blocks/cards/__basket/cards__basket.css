@@ -1,0 +1,16 @@
+.cards__basket {
+    width: 18px;
+    height: 19px;
+    position: absolute;
+    top: 25px;
+    right: 21px;
+    background: none;
+    background-image: url(../../../images/Trash.svg);
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.cards__basket:hover {
+    background-image: url(../../../images/Trash__active.svg);
+}

@@ -1,0 +1,8 @@
+.cards__like_active {
+    background-image: url(../../../../images/like_active.png);
+    flex-shrink: 0;
+}
+
+.cards__like_active:hover {
+    opacity: 1;
+}

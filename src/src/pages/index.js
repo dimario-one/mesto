@@ -70,10 +70,8 @@ function createCard(data) {
 
 function openProfilePopup() {
     editFormPopup.open();
-    const { name, job } = currentUserInfo.getUserInfo()
-    formName.value = name;
-    formProf.value = job;
-
+    formName.value = currentUserInfo.getUserInfo().name;
+    formProf.value = currentUserInfo.getUserInfo().job;
 }
 
 popupOpenBtn.addEventListener('click', openProfilePopup);

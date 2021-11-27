@@ -30,7 +30,6 @@ export class Card {
         // Добавим данные
         this._element.querySelector('.cards__type_temlate_pic').src = this.initialCard.link;
         this._element.querySelector('.cards__type_temlate_text').textContent = this.initialCard.name;
-        this._element.querySelector('.cards__type_temlate_pic').alt = this.initialCard.name;
         // Вернём элемент наружу
         return this._element;
     }

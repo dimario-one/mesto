@@ -1,0 +1,16 @@
+        .popup__form {
+            position: relative;
+            padding: 0;
+            padding-top: 25px;
+            justify-content: center;
+            width: 282px;
+            background: #FFFFFF;
+            border-radius: 10px;
+        }
+        
+        @media screen and (min-width: 760px) {
+            .popup__form {
+                width: 430px;
+                padding-top: 34px;
+            }
+        }

@@ -1,5 +1,4 @@
  export const validationConfig = {
-     formSelector: '.popup__form',
      inputSelector: '.popup__input', // классы наших инпутов
      submitButtonSelector: '.popup__button',
      inactiveButtonClass: 'popup__button_disabled', // класс заблокированной кнопки
@@ -10,9 +9,10 @@
  export class FormValidator {
      constructor(config, popupFormElement) { // 
          this._config = config;
+
          this._element = document.querySelector(popupFormElement);
          this._submitButton = this._element.querySelector(this._config.submitButtonSelector);
-         this._formElement = this._element.querySelector(this._config.formSelector);
+         this._formElement = this._element.querySelector(".popup__form");
      }
 
      _showError = () => { // метод показа ошибки
@@ -46,7 +46,8 @@
              this._submitButton.classList.remove(this._config.inactiveButtonClass); // если хотим кнопку разблокировать
              this._submitButton.disabled = false;
          } else {
-             this._disabledButton()
+             this._submitButton.classList.add(this._config.inactiveButtonClass); // если хотим кнопку заблокировать
+             this._submitButton.disabled = 'disabled';
          }
      }
 
@@ -54,13 +55,10 @@
          this._inputsList = this._formElement.querySelectorAll(this._config.inputSelector); //Ищем все наши инпуты
          this._submitButton = this._formElement.querySelector(this._config.submitButtonSelector); // нашли кнопку в форме чтоб ее заблокировать
 
-         const isFormValid = this._formElement.checkValidity();
-         this._toggleButtonState(isFormValid)
-
          Array.from(this._inputsList).forEach(inputElement => { // На каждый инпут вешаем обработчик события(inputElement название события)
              inputElement.addEventListener('input', () => {
                  this._inputElement = inputElement;
-                 this._checkInputValidity()
+                 this._checkInputValidity();
                  const isFormValid = this._formElement.checkValidity(); //   проверяем валидна ли форма при каждом вводе поэтому она ноходится в массиве
                  this._toggleButtonState(isFormValid) // функция блокирования 
              })
@@ -68,7 +66,6 @@
 
          this._element.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
              evt.preventDefault();
-             this._toggleButtonState(false)
          })
      }
 
