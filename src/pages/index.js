@@ -58,10 +58,10 @@ currentSection.renderItems();
 const currentUserInfo = new UserInfo({ nameEditProfile: ".profile__text-title", jobEditProfile: ".profile__text-subtitle" });
 currentUserInfo.setUserInfo({ name: "Жак-Ив Кусто", job: "Исследователь океана" });
 
-const validationFormAdd = new FormValidator(validationConfig, '.popup_type_add');
+const validationFormAdd = new FormValidator(validationConfig, '.popup__form_type_add');
 validationFormAdd.enableValidation();
 
-const validationFormEdit = new FormValidator(validationConfig, '.popup_type_edit');
+const validationFormEdit = new FormValidator(validationConfig, '.popup__form_type_edit');
 validationFormEdit.enableValidation();
 
 function createCard(data) {

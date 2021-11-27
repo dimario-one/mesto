@@ -8,11 +8,10 @@
  }
 
  export class FormValidator {
-     constructor(config, popupFormElement) { // 
+     constructor(config, popupFormSelector) { // 
          this._config = config;
-         this._element = document.querySelector(popupFormElement);
-         this._submitButton = this._element.querySelector(this._config.submitButtonSelector);
-         this._formElement = this._element.querySelector(this._config.formSelector);
+         this._formElement = document.querySelector(popupFormSelector);
+         this._submitButton = this._formElement.querySelector(this._config.submitButtonSelector);
      }
 
      _showError = () => { // метод показа ошибки
@@ -66,7 +65,7 @@
              })
          })
 
-         this._element.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
+         this._formElement.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
              evt.preventDefault();
              this._toggleButtonState(false)
          })
