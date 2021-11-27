@@ -68,7 +68,7 @@
 
          this._element.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
              evt.preventDefault();
-             this._toggleButtonState(true);
+             this._toggleButtonState(false);
          })
      }
 
