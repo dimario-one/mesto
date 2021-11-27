@@ -61,7 +61,7 @@ currentUserInfo.setUserInfo({ name: "Жак-Ив Кусто", job: "Исслед
 const validationFormAdd = new FormValidator(validationConfig, '.popup_type_add');
 validationFormAdd.enableValidation();
 
-const validationFormEdit = new FormValidator(validationConfig, '.popup_type_edit');
+const validationFormEdit = new FormValidator(validationConfig, 'popup__form_edit');
 validationFormEdit.enableValidation();
 
 function createCard(data) {
@@ -70,8 +70,9 @@ function createCard(data) {
 
 function openProfilePopup() {
     editFormPopup.open();
-    formName.value = currentUserInfo.getUserInfo().name;
-    formProf.value = currentUserInfo.getUserInfo().job;
+    const { name, job } = currentUserInfo.getUserInfo();
+    formName.value = name;
+    formProf.value = job;
 }
 
 popupOpenBtn.addEventListener('click', openProfilePopup);
