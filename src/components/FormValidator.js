@@ -53,14 +53,14 @@
          this._inputsList = this._formSelector.querySelectorAll(this._config.inputSelector); //Ищем все наши инпуты
          this._submitButton = this._formSelector.querySelector(this._config.submitButtonSelector); // нашли кнопку в форме чтоб ее заблокировать
 
-         const isFormValid = this._formElement.checkValidity();
+         const isFormValid = this._formSelector.checkValidity();
          this._toggleButtonState(isFormValid);
 
          Array.from(this._inputsList).forEach(inputElement => { // На каждый инпут вешаем обработчик события(inputElement название события)
              inputElement.addEventListener('input', () => {
                  this._inputElement = inputElement;
                  this._checkInputValidity();
-                 const isFormValid = this._formElement.checkValidity();
+                 const isFormValid = this._formSelector.checkValidity();
                  this._toggleButtonState(isFormValid);
              })
          })
