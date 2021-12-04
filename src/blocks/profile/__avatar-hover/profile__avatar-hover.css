@@ -1,4 +1,4 @@
-.profile__avatar_hover {
+.profile__avatar-hover {
     opacity: 0;
     padding: 50px;
     background: rgba(0, 0, 0, 0.6);
@@ -10,14 +10,14 @@
     z-index: -4;
 }
 
-.profile__avatar_hover:hover {
+.profile__avatar-hover:hover {
     opacity: 1;
     cursor: pointer;
     z-index: 1;
 }
 
 @media screen and (min-width:1280px) {
-    .profile__avatar_hover {
+    .profile__avatar-hover {
         justify-self: self-start;
     }
 }
