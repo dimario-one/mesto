@@ -1,4 +1,6 @@
 .profile__avatar {
+    z-index: -1;
+    position: absolute;
     align-self: center;
     margin: 0;
     border-radius: 50%;

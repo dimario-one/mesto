@@ -42,7 +42,7 @@ export class Card {
         this._element.querySelector('.cards__type_temlate_pic').src = this.data.link;
         this._element.querySelector('.cards__type_temlate_text').textContent = this.data.name;
         this._element.querySelector('.cards__type_temlate_pic').alt = this.data.name;
-        this._element.querySelector('.like-counter').textContent = this._likes.length; // вставил при отрисовке
+        this._element.querySelector('.cards__like-counter').textContent = this._likes.length; // вставил при отрисовке
         this._updateLikes();
         // Вернём элемент наружу
         return this._element;
@@ -83,7 +83,7 @@ export class Card {
 
     setLikes(dataLikes) {
         this._likes = dataLikes;
-        this._element.querySelector('.like-counter').textContent = this._likes.length; // вставил при отрисовке
+        this._element.querySelector('.cards__like-counter').textContent = this._likes.length; // вставил при отрисовке
         this._updateLikes()
     }
 
@@ -94,9 +94,4 @@ export class Card {
             this._elementLikeButton.classList.add('cards__like_active');
         }
     }
-
-    // likeCounter = () => {
-    //     this._likeCounter.textContent = String(data.likes.length);
-    // }
-
 }

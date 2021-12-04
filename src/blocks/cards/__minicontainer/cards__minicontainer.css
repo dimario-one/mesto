@@ -1,0 +1,4 @@
+.cards__minicontainer {
+    display: flex;
+    flex-direction: column;
+}

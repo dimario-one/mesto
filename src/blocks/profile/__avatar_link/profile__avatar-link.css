@@ -1,0 +1,23 @@
+.avatar-link {
+    object-fit: cover;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 127px;
+    height: 127px;
+    margin: 37px 20px 47px 0;
+    position: relative;
+}
+
+@media screen and (max-width: 767px) {
+    .avatar-link {
+        grid-row-end: 2;
+        margin-left: 44px;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 432px) {
+    .avatar-link {
+        margin: 38px auto 22px;
+    }
+}

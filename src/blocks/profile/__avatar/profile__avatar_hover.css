@@ -1,0 +1,23 @@
+.profile__avatar_hover {
+    opacity: 0;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.6);
+    align-self: center;
+    margin: 0;
+    border-radius: 50%;
+    max-width: 24vh;
+    max-height: 18vh;
+    z-index: -4;
+}
+
+.profile__avatar_hover:hover {
+    opacity: 1;
+    cursor: pointer;
+    z-index: 1;
+}
+
+@media screen and (min-width:1280px) {
+    .profile__avatar_hover {
+        justify-self: self-start;
+    }
+}
