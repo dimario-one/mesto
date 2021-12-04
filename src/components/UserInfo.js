@@ -4,6 +4,7 @@ export class UserInfo {
         this._jobSelector = document.querySelector(jobEditProfile);
         this._name = null;
         this._job = null;
+        this._avatar = document.querySelector(".profile__avatar")
     }
     getUserInfo() { //Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
         return {
@@ -12,14 +13,22 @@ export class UserInfo {
         }
     }
 
-    setUserInfo({ name, job }) {
+    setUserInfo({ name, about }) {
         this._name = name;
-        this._job = job;
+        this._job = about;
     }
 
     updateUserInfo() {
         this._nameSelector.textContent = this._name;
         this._jobSelector.textContent = this._job;
+    }
+
+    setAvatar(ava) { // сюда приходит data.avatar
+        if (ava) {
+            this._avatar.src = ava.avatar;
+        } else {
+            console.log('err')
+        }
     }
 
 }

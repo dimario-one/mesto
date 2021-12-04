@@ -1,4 +1,13 @@
 //Переменные
+
+export let userId = null;
+export let arrLikes = null;
+export const popupDeleteSubmit = document.querySelector(".popup_type_submit");
+export const avatarImg = document.querySelector(".avatar__link");
+export const editForm = document.querySelector(".popup__form_type_edit");
+export const addForm = document.querySelector(".popup__form_type_add");
+export const avatarForm = document.querySelector(".popup__form_type_avatar");
+export const popupAvatar = document.querySelector(".popup_type_avatar"); /*Нашел popup Аватара*/
 export const profilePopup = document.querySelector(".popup_type_edit"); /*Нашел popup*/
 export const popupOpenBtn = document.querySelector(".profile__edit-button"); /*Нашел кнопку редактирования*/
 export const formName = document.querySelector(".popup__input_type_name"); /*Нашел инпут имени*/

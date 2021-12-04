@@ -1,12 +1,19 @@
 export class Card {
-    constructor(initialCard, templateSelector, handleImageClick) {
-        this._name = initialCard.name;
-        this._link = initialCard.link;
-        this._handleImageClick = handleImageClick;
-        this.initialCard = initialCard;
-        this._templateSelector = templateSelector;
+    constructor({ data, handleImageClick, handleLikeClick, handleCardDelete }, templateSelector) {
+        this.id = data._id;
         this._element = null;
-        this._deleteCard = this._deleteCard.bind(this);
+        this._likes = data.likes;
+        this._name = data.name;
+        this._link = data.link;
+        this.data = data;
+        this._ownerId = data.owner._id
+        this._handleCardDelete = handleCardDelete;
+        this._handleLikeClick = handleLikeClick;
+        this._handleImageClick = handleImageClick;
+        this._templateSelector = templateSelector;
+        this._currentUserId = data.currentUserId;
+        this.deleteCard = this.deleteCard.bind(this);
+
 
     }
 
@@ -28,9 +35,15 @@ export class Card {
         this._element = this._getTemplate();
         this._setEventListeners(); // слушатель методов в отрисовке карточки
         // Добавим данные
-        this._element.querySelector('.cards__type_temlate_pic').src = this.initialCard.link;
-        this._element.querySelector('.cards__type_temlate_text').textContent = this.initialCard.name;
-        this._element.querySelector('.cards__type_temlate_pic').alt = this.initialCard.name;
+
+        if (!this.isOwner()) {
+            this._buttonDelete.remove();
+        }
+        this._element.querySelector('.cards__type_temlate_pic').src = this.data.link;
+        this._element.querySelector('.cards__type_temlate_text').textContent = this.data.name;
+        this._element.querySelector('.cards__type_temlate_pic').alt = this.data.name;
+        this._element.querySelector('.like-counter').textContent = this._likes.length; // вставил при отрисовке
+        this._updateLikes();
         // Вернём элемент наружу
         return this._element;
     }
@@ -38,26 +51,52 @@ export class Card {
 
     // назначаем слушатель на кнопку
     _setEventListeners() {
-        this._element.querySelector('.cards__like').addEventListener('click', () => {
-            this._like();
-        });
 
-        this._element.querySelector('.cards__basket').addEventListener('click', () => {
-            this._deleteCard()
+        this._elementLikeButton = this._element.querySelector('.cards__like')
+
+        this._elementLikeButton.addEventListener('click', () => {
+            this._handleLikeClick(this);
         });
+        this._buttonDelete = this._element.querySelector('.cards__basket');
+        if (this._buttonDelete) {
+            this._buttonDelete.addEventListener('click', () => {
+                this._handleCardDelete(this)
+            });
+        }
 
         this._element.querySelector('.cards__pic').addEventListener('click', () => {
             this._handleImageClick({ name: this._name, link: this._link });
         });
 
     }
-
-    // метод переключения лайк
-    _like() {
-        this._element.querySelector('.cards__like').classList.toggle('cards__like_active');
+    isOwner() {
+        return this._currentUserId === this._ownerId
     }
 
-    _deleteCard = () => {
+    deleteCard = () => {
         this._element.remove();
     }
+
+    isLiked() {
+        return (this._likes.some(user => user._id === this._currentUserId))
+    }
+
+    setLikes(dataLikes) {
+        this._likes = dataLikes;
+        this._element.querySelector('.like-counter').textContent = this._likes.length; // вставил при отрисовке
+        this._updateLikes()
+    }
+
+    _updateLikes() {
+        if (!this.isLiked()) {
+            this._elementLikeButton.classList.remove('cards__like_active');
+        } else {
+            this._elementLikeButton.classList.add('cards__like_active');
+        }
+    }
+
+    // likeCounter = () => {
+    //     this._likeCounter.textContent = String(data.likes.length);
+    // }
+
 }

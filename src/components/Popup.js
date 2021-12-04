@@ -26,7 +26,7 @@ export default class Popup {
 
         this._popupElement.querySelector('.popup__close-button').addEventListener('click', () => this.close());
 
-        this._popupElement.addEventListener('click', (evt) => { // слушатель кнопки закрытия по клику мыши
+        this._popupElement.addEventListener('mousedown', (evt) => { // слушатель кнопки закрытия по клику мыши
             if (evt.target.classList.contains("popup")) {
                 this.close(evt.currentTarget);
             }
