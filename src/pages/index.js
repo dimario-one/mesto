@@ -22,9 +22,9 @@ import {
     avatarForm,
     addForm,
     editForm,
-    userId,
-    arrLikes,
 } from "../utils/constants.js"
+let userId = null;
+
 
 const currentSection = new Section({
     renderer: (item) => {
@@ -72,7 +72,6 @@ const api = new Api({
 Promise.all([api.getCards(), api.getUserInfo()])
     .then(([dataCards, dataUser]) => {
         userId = dataUser._id;
-        arrLikes = dataCards.likes;
         currentSection.renderItems(dataCards) //рендер карточки
         currentUserInfo.setUserInfo(dataUser) //Рендер пользователя
         currentUserInfo.updateUserInfo()
