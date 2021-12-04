@@ -48,10 +48,11 @@ function submitHandler(dataUser) {
     isLoad(editForm, true)
     api.updateUserInfo(dataUser)
         .then((data) => {
-            currentUserInfo.setUserInfo(data);
-            currentUserInfo.updateUserInfo();
-            editFormPopup.close();
-        }).finally(() => isLoad(editForm, false));
+            currentUserInfo.setUserInfo(data)
+            currentUserInfo.updateUserInfo()
+            editFormPopup.close()
+        }).catch(err => console.log(err))
+        .finally(() => isLoad(editForm, false));
 }
 
 function isLoad(form, status) {
@@ -76,7 +77,7 @@ Promise.all([api.getCards(), api.getUserInfo()])
         currentUserInfo.setUserInfo(dataUser) //Рендер пользователя
         currentUserInfo.updateUserInfo()
     })
-    // .catch(err => console.log(err))
+    .catch(err => console.log(err))
 
 const avatarEditPopup = new PopupWithForm(popupAvatar, handleSubmitForm);
 
@@ -87,7 +88,7 @@ function handleSubmitForm(data) {
             currentUserInfo.setAvatar(res);
             avatarEditPopup.close();
         })
-        // .catch(err => console.log(err))
+        .catch(err => console.log(err))
         .finally(() => isLoad(avatarForm, false));
 }
 
@@ -106,8 +107,8 @@ function cardFormSubmit(data) {
             const card = createCard(responceData);
             currentSection.addItem(card);
             addFormPopup.close()
-                // .catch(err => console.log(err))
-        }).finally(() => isLoad(addForm, false));
+        }).catch(err => console.log(err))
+        .finally(() => isLoad(addForm, false));
 }
 
 function editCardPopup() {
@@ -152,11 +153,11 @@ function createCard(data) {
 function handleCardDelete(card) {
     cardDelete.open()
     cardDelete.setActionSubmit(() => {
-            api.removeCard(card.id)
-                .then(() => { card.deleteCard(), cardDelete.close() })
-        })
-        // .catch(err => console.log(err))
+        api.removeCard(card.id)
+            .then(() => { card.deleteCard(), cardDelete.close() }).catch(err => console.log(err))
+    })
 }
+
 
 cardDelete.setEventListeners();
 avatarEditPopup.setEventListeners();
