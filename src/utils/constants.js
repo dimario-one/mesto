@@ -3,7 +3,7 @@
 export let userId = null;
 export let arrLikes = null;
 export const popupDeleteSubmit = document.querySelector(".popup_type_submit");
-export const avatarImg = document.querySelector(".avatar__link");
+export const avatarImg = document.querySelector(".profile__avatar-link");
 export const editForm = document.querySelector(".popup__form_type_edit");
 export const addForm = document.querySelector(".popup__form_type_add");
 export const avatarForm = document.querySelector(".popup__form_type_avatar");
