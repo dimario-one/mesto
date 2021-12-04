@@ -1,8 +1,10 @@
 .profile__avatar-hover {
+    /* align-self: center; */
     opacity: 0;
-    padding: 50px;
+    padding: 55px;
     background: rgba(0, 0, 0, 0.6);
-    align-self: center;
+    background-size: cover;
+    background-position: center;
     margin: 0;
     border-radius: 50%;
     max-width: 24vh;
@@ -18,6 +20,6 @@
 
 @media screen and (min-width:1280px) {
     .profile__avatar-hover {
-        justify-self: self-start;
+        padding: 51px;
     }
 }
