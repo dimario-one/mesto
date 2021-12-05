@@ -1,27 +1,11 @@
 .profile__avatar {
-    cursor: pointer;
-    z-index: -1;
-    position: absolute;
-    align-self: center;
-    margin: 0;
+    width: 127px;
+    height: 127px;
     border-radius: 50%;
-    max-width: 26vh;
-    max-height: 26vh;
+    z-index: -10;
 }
 
-.profile__avatar+.profile__avatar-hover {}
-
-@media screen and (min-width:1024px) {
-    .profile__avatar {
-        width: 24vh;
-        height: 24vh;
-    }
-}
-
-@media screen and (min-width:1280px) {
-    .profile__avatar {
-        width: 22vh;
-        height: 22vh;
-        justify-self: self-start;
-    }
+.profile__avatar:hover+.profile__avatar-edit {
+    opacity: 1;
+    z-index: 5;
 }

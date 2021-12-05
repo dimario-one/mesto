@@ -1,0 +1,10 @@
+.profile__avatar-edit {
+    position: absolute;
+    opacity: 0;
+    padding: 53px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    background-size: cover;
+    background-position: center;
+    z-index: -4;
+}
