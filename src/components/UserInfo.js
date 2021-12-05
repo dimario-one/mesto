@@ -1,10 +1,10 @@
 export class UserInfo {
-    constructor({ nameEditProfile, jobEditProfile }) {
+    constructor({ nameEditProfile, jobEditProfile }, avatarSelector) {
         this._nameSelector = document.querySelector(nameEditProfile);
         this._jobSelector = document.querySelector(jobEditProfile);
         this._name = null;
         this._job = null;
-        this._avatar = document.querySelector(".profile__avatar")
+        this._avatar = document.querySelector(avatarSelector);
     }
     getUserInfo() { //Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
         return {
@@ -13,7 +13,7 @@ export class UserInfo {
         }
     }
 
-    setUserInfo({ name, about }) {
+    setUserInfo({ name, about, avatar }) {
         this._name = name;
         this._job = about;
     }

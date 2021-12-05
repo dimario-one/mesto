@@ -32,7 +32,7 @@ const currentSection = new Section({
     }
 }, ".cards__items");
 
-const currentUserInfo = new UserInfo({ nameEditProfile: ".profile__text-title", jobEditProfile: ".profile__text-subtitle" });
+const currentUserInfo = new UserInfo({ nameEditProfile: ".profile__text-title", jobEditProfile: ".profile__text-subtitle" }, ".profile__avatar");
 
 function openProfilePopup() {
     editFormPopup.open();
@@ -45,19 +45,20 @@ const editFormPopup = new PopupWithForm(profilePopup, submitHandler);
 editFormPopup.setEventListeners();
 
 function submitHandler(dataUser) {
-    isLoad(editForm, true)
+    renderLoading(editForm, true)
     api.updateUserInfo(dataUser)
         .then((data) => {
+            console.log(data)
             currentUserInfo.setUserInfo(data)
             currentUserInfo.updateUserInfo()
             editFormPopup.close()
         }).catch(err => console.log(err))
-        .finally(() => isLoad(editForm, false));
+        .finally(() => renderLoading(editForm, false));
 }
 
-function isLoad(form, status) {
+function renderLoading(form, isStatus) {
     const buttonAction = form.querySelector(".popup__button");
-    if (status) {
+    if (isStatus) {
         buttonAction.textContent = "Сохранение..."
     } else {
         buttonAction.textContent = "Сохранить"
@@ -76,20 +77,21 @@ Promise.all([api.getCards(), api.getUserInfo()])
         currentSection.renderItems(dataCards) //рендер карточки
         currentUserInfo.setUserInfo(dataUser) //Рендер пользователя
         currentUserInfo.updateUserInfo()
+        currentUserInfo.setAvatar(dataUser)
     })
     .catch(err => console.log(err))
 
 const avatarEditPopup = new PopupWithForm(popupAvatar, handleSubmitForm);
 
 function handleSubmitForm(data) {
-    isLoad(avatarForm, true);
+    renderLoading(avatarForm, true);
     api.changeAvatar(data)
         .then(res => {
             currentUserInfo.setAvatar(res);
             avatarEditPopup.close();
         })
         .catch(err => console.log(err))
-        .finally(() => isLoad(avatarForm, false));
+        .finally(() => renderLoading(avatarForm, false));
 }
 
 const cardDelete = new PopupWithSubmit(popupDeleteSubmit);
@@ -101,14 +103,15 @@ avatarImg.addEventListener('click', function() {
 const addFormPopup = new PopupWithForm(popupAddFormBtn, cardFormSubmit);
 
 function cardFormSubmit(data) {
-    isLoad(addForm, true)
+    renderLoading(addForm, true)
     api.createNewCard(data)
         .then((responceData) => {
             const card = createCard(responceData);
             currentSection.addItem(card);
             addFormPopup.close()
-        }).catch(err => console.log(err))
-        .finally(() => isLoad(addForm, false));
+        })
+        .catch(err => console.log(err))
+        .finally(() => renderLoading(addForm, false));
 }
 
 function editCardPopup() {
@@ -138,10 +141,12 @@ function createCard(data) {
                 if (card.isLiked()) {
                     api.removeCardLike(card.id)
                         .then(dataCard => card.setLikes(dataCard.likes))
+                        .catch(err => console.log(err))
                 } else {
                     api.setCardLike(card.id)
                         .then(dataCard => {
                             card.setLikes(dataCard.likes)
+                                .catch(err => console.log(err))
                         })
                 }
             },
@@ -154,7 +159,10 @@ function handleCardDelete(card) {
     cardDelete.open()
     cardDelete.setActionSubmit(() => {
         api.removeCard(card.id)
-            .then(() => { card.deleteCard(), cardDelete.close() }).catch(err => console.log(err))
+            .then(() => {
+                card.deleteCard(), cardDelete.close()
+            })
+            .catch(err => console.log(err))
     })
 }
 

@@ -67,7 +67,10 @@
 
          this._formElement.addEventListener('submit', (evt) => { // Функция запрета  действия по умолчанию
              evt.preventDefault();
-             this._toggleButtonState(false)
+             this._formElement.addEventListener('reset', () => {
+                 this._toggleButtonState(false)
+             })
+
          })
      }
 

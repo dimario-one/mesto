@@ -25,7 +25,6 @@ export class PopupWithSubmit extends Popup {
         super(popupElement);
         this._handleFormSubmit = null; //?  надо ли
         this._form = popupElement.querySelector('.popup__form'); //Нахожу форму
-        this._inputs = popupElement.querySelectorAll('.popup__input'); // Нахожу инпуты в форме
     }
 
     setActionSubmit(action) { //в попапе нужен метод, который динамически позволяет менять функцию, которая вызывается при нажатии на кнопку сабмита. 
