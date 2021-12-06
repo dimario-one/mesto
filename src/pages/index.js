@@ -146,8 +146,8 @@ function createCard(data) {
                     api.setCardLike(card.id)
                         .then(dataCard => {
                             card.setLikes(dataCard.likes)
-                                .catch(err => console.log(err))
                         })
+                        .catch(err => console.log(err))
                 }
             },
             handleCardDelete

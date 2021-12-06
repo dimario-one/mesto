@@ -1,4 +1,6 @@
 .profile__avatar-link {
+    display: flex;
+    justify-content: center;
     object-fit: cover;
     position: relative;
 }
