@@ -1,10 +1,27 @@
-.profile__avatar-edit {
-    position: absolute;
-    opacity: 0;
-    padding: 53px;
-    left: 0;
-    background: rgba(0, 0, 0, 0.6);
-    background-size: cover;
-    background-position: center;
-    z-index: -4;
-}
+    .profile__avatar-edit {
+        position: absolute;
+        left: 63px;
+        opacity: 0;
+        padding: 53px;
+        background: rgba(0, 0, 0, 0.6);
+        background-size: cover;
+        background-position: center;
+        z-index: 16;
+    }
+    
+    .profile__avatar-edit:hover {
+        opacity: 1;
+        z-index: 5;
+    }
+    
+    @media screen and (min-width: 756px) {
+        .profile__avatar-edit {
+            left: 63px;
+        }
+    }
+    
+    @media screen and (min-width: 1024px) {
+        .profile__avatar-edit {
+            left: 0px;
+        }
+    }
